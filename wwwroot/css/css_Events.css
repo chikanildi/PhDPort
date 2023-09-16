@@ -1,0 +1,88 @@
+﻿
+
+.page {
+    margin-bottom: 200px;
+}
+
+.block_title {
+    text-transform: uppercase;
+    text-decoration: underline;
+    min-width: 200px;
+}
+
+.title {
+    min-width: 160px;
+}
+
+.type {
+    min-width: 100px;
+}
+
+.location {
+    min-width: 110px;
+}
+
+.mode {
+    min-width: 90px;
+}
+
+.fee {
+    min-width: 90px;
+}
+
+.description {
+    min-width: 160px;
+}
+
+.submitdate {
+    min-width: 175px;
+    text-align: center;
+}
+
+.username {
+    min-width: 130px;
+}
+
+.box {
+    width: 250px;
+    height: 120px;
+    margin: 10px;
+    margin-bottom: 25px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background-color: #E6E6EA;
+}
+
+#box1 {
+    background-color: white;
+}
+
+#box2 {
+    background-color: white;
+}
+
+#box3 {
+    background-color: white;
+}
+
+#box4 {
+    background-color: white;
+}
+
+.starttime {
+    min-width: 100px;
+}
+
+.enddate {
+    min-width: 100px;
+}
+
+.postedby {
+    min-width: 100px;
+}
+
+.organizer {
+    min-width: 160px;
+}

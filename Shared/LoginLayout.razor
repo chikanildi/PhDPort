@@ -1,0 +1,38 @@
+﻿@inherits LayoutComponentBase
+
+<div class="col-12">
+    <br /><br />
+    @Body
+</div>
+
+<footer class="footer">
+    @* <span>Contact us: admin@phdport.com | Phone: +43 670 400 4600 |</span> *@
+    <a href="/about">About Us</a> | 
+    <a href="/privacy">Privacy Policy</a> | 
+    <a href="/terms">Terms of Service</a> |
+    <a href="/contact">Contact</a> 
+</footer>
+
+
+<style>
+.footer {
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color: #111f2f;
+padding: 10px;
+text-align: center;
+border-top: 1px solid #dee2e6;
+color: white;
+font-size: 12px;
+}
+        
+.footer a {
+color: white;
+text-decoration: none;
+padding-left: 10px;
+padding-right: 10px;
+}
+
+</style>

@@ -1,0 +1,150 @@
+﻿@using Phd_Port.Model;
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        @*<a class="navbar-brand" href="">
+                <img src="image/bookmark_best.png" style="width: 1%;" alt="Logo" class="logo-image">
+                THE BOOKMARKHUB
+            </a>*@
+    </div>
+
+    <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="nav flex-column flex-sm-row">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <i class="oi oi-account-login" aria-hidden="true"></i> @(Datastore.userName=="" ? "Login" : Datastore.userName)
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Feed">
+                <i class="oi oi-bell"></i> Feed
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Events">
+                <i class="fas fa-calendar-plus"></i> Events
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Bookmarks">
+                <i class="fas fa-bookmark" aria-hidden="true"></i> Bookmarks
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="CallforPapers">
+                <i class="fas fa-file-alt"></i> Call for Papers
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Jobposts">
+                <i class="fas fa-suitcase"></i> Jobposts
+            </NavLink>
+        </div>
+
+        @* <div class="nav-item px-3"> *@
+        @*     <NavLink class="nav-link" href="Favorites"> *@
+        @*         <i class="fas fa-heart"></i> Favorites *@
+        @*     </NavLink> *@
+        @* </div> *@
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Calendar">
+                <i class="fas fa-calendar-alt"></i> My Calendar
+            </NavLink>
+        </div>
+        @* <div class="nav-item px-3"> *@
+        @*     <NavLink class="nav-link" href="Worldcloud"> *@
+        @*         <i class="fas fa-globe" aria-hidden="true"></i> Worldcloud *@
+        @*     </NavLink> *@
+        @* </div> *@
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Worldmap">
+                <i class="fas fa-map-marked-alt"></i> Worldmap
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Admin">
+                <i class="fas fa-user-shield"></i> Admin
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
+@code {
+
+    //protected override async Task OnAfterRenderAsync(bool firstRender)
+    //{
+    //    if (firstRender)
+    //    {
+    //        await GetLoggedIn();
+    //        StateHasChanged(); // This will trigger a re-render to display the updated value
+    //    }
+    //}
+
+    //private async Task GetLoggedIn()
+    //{
+    //    await Task.Delay(1000);
+    //    string isLoggedin = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "loggedin");
+
+    //    if (string.IsNullOrEmpty(isLoggedin))
+    //    {
+    //        NavigationManager.NavigateTo("/");
+    //        return;
+    //    }
+    //    if (isLoggedin == "true")
+    //    {
+    //        loggedinusername = await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "username");
+    //        loggedinuserid = int.Parse(await JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "userid"));
+    //        //check if valid account(use secret)
+    //        StateHasChanged();
+    //    }
+    //    else
+    //    {
+    //        NavigationManager.NavigateTo("/");
+    //    }
+    //}
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
+<style>
+
+    navbar-brand {
+        background-color: lightblue;
+    }
+
+    .nav-item {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+    }
+
+        .nav-link i {
+            margin-right: 8px; /* Adjust the value as needed to add more space */
+        }
+
+        .nav-link oi {
+            margin-right: 8px; /* Adjust the value as needed to add more space */
+        }
+</style>

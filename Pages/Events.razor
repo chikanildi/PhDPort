@@ -1,0 +1,134 @@
+﻿@page "/events"
+@using Microsoft.EntityFrameworkCore;
+@using Phd_Port.Data;
+@using Phd_Port.Model;
+<PageTitle>Events</PageTitle>
+@inject IJSRuntime JS
+@inject IDbContextFactory<BookmarkhubContext> DbFactory
+<link href="css/Css_Events.css" rel="stylesheet" />
+<div class="page">
+
+    <button @onclick="call_me">Format Table</button>
+    @if (isDataReady)
+        @if (currentEventsTotal > 0)
+        {
+            <h2 style="color:green;font-size:14">Total current events : @currentEventsTotal</h2>
+        }
+        <h3 style="color:red;font-size:14">Total upcoming events : @eventsUpcomingTotal</h3>
+
+        @if (events == null || !events.Any())
+        {
+
+            <table>
+                <tr>
+                    <td colspan="12">There are not any events</td>
+                </tr>
+            </table>
+        }
+        else
+        {
+            <div>
+            </div>
+            <span></span>
+            <div class="admin_container">
+                <div class="content-block">
+
+                    <table id="events_table" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="eventtitle">
+                                    Title&nbsp;
+
+                                </th>
+                                <th class="type">
+                                    Type&nbsp;
+
+                                </th>
+                                <th class="organizer">
+                                    Organizer&nbsp;
+
+                                </th>
+                                <th>
+                                    Location&nbsp;
+
+                                </th>
+                                <th>
+                                    Mode&nbsp;
+
+                                </th>
+                                <th>
+                                    Fee&nbsp;
+
+                                </th>
+                                <th>
+                                    Description&nbsp;
+
+                                </th>
+                                <th>
+                                    Start&nbsp;
+
+                                </th>
+                                <th>
+                                    End&nbsp;
+
+                                </th>
+
+
+                                <th>Favorite</th>
+                                @if (Datastore.userName == "admin")
+                                {
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var ev in events)
+                            {@*
+                                    @if (!(ev.Dateend >= DateTime.Today || ev.Datestart >= DateTime.Today))
+                                    {
+                                        continue;
+                                    }*@
+                            @if ((ev.Dateend > DateTime.Today && ev.Datestart > DateTime.Today))
+                            {
+                                RowColor = "red";
+                            }
+                            else if (ev.Dateend >= DateTime.Today && ev.Datestart <= DateTime.Today)
+                                RowColor = "green";
+                            else
+                            {
+                                RowColor = "black";
+                            }
+
+                            <tr style="color:@RowColor;font-size:14">
+                                <td class="title">
+                                    <a href="@ev.Eventurl" target="_blank" onclick="window.open('@ev.Eventurl', 'newwindow', 'width=500, height=500, toolbar=no'); return false;">
+                                        @ev.Title
+                                    </a>
+                                </td>
+                                <td class="eventtype">@ev.Eventtype</td>
+                                <td class="organizer">@ev.Organizer</td>
+                                <td class="location">@ev.Eventlocation</td>
+                                <td class="mode">@ev.Mode</td>
+                                <td class="fee">@ev.Fee</td>
+                                <td class="description">@ev.Eventdescription</td>
+                                <td class="starttime">@ev.Datestart.ToString("yyyy-MM-dd")</td>
+                                <td class="enddate">@ev.Dateend.ToString("yyyy-MM-dd")</td>
+                                <td><center><i class="@ev.FavText fa-star star-icon" @onclick="() => FavPressed(ev)"></i></center></td>
+                                @if (Datastore.userName == "admin")
+                                {
+                                    <td class="edit"><i @onclick="() => EditEvent(ev.Id)">Edit</i></td>
+                                    <td class="delete"><i>X</i></td>
+                                }
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        }
+
+    </div>
+
